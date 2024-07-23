@@ -1,0 +1,67 @@
+https://www.javatpoint.com/facade-pattern
+
+Facade Pattern describes a higher-level interface that makes the sub-system easier to use.
+
+It hides the internal complexity and provide interface,
+in which user can access system easly.
+
+
+
+interface Shape {
+    void draw();
+}
+
+class Circle implements Shape{
+
+    @Override
+    public void draw() {
+        System.out.println("Circle is drawn");
+    }
+}
+
+class Triangle implements Shape {
+    @Override
+    public void draw() {
+        System.out.println("Triangle is drawn");
+    }
+}
+
+ class Rectangle implements Shape {
+    @Override
+    public void draw() {
+        System.out.println("Rectangle is drawn");
+    }
+}
+
+class Facade {
+    private Shape circle;
+    private Shape rectangle;
+    private Shape triangle;
+
+    public Facade() {
+        this.circle = new Circle();
+        this.rectangle = new Rectangle();
+        this.triangle = new Triangle();
+    }
+
+    void drawCircle(){
+        circle.draw();
+    }
+
+    void drawTriangle(){
+        triangle.draw();
+    }
+
+    void drawRectangle(){
+        rectangle.draw();
+    }
+}
+
+class FacadeDemo {
+    public static void main(String[] args) {
+        Facade facade = new Facade();
+        facade.drawCircle();
+        facade.drawRectangle();
+        facade.drawTriangle();
+    }
+}

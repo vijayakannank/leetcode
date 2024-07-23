@@ -1,0 +1,102 @@
+
+HR has a small software to keep track of the employees.
+The database is in SQL Server (or other relational database) and it has a few entities.
+They want to run a few custom SQL queries to find some reports.
+*/
+
+
+create table department (
+id int not null primary key,
+name nvarchar(50)
+)
+
+
+create table employee (
+id int not null primary key,
+departmentId int not null,
+firstName nvarchar(50),
+lastName nvarchar(50),
+email nvarchar(50),
+dateOfBirth date
+)
+
+
+create table payment (
+id int not null primary key,
+employeeId int not null,
+amount decimal not null,
+paidAt datetime
+)
+
+
+---
+-- Query 1 - list all departments, with the corresponding number of employees
+-- Department id 1, name "Talent"
+-- Department id 2, name "Talent"
+
+-- group by name "Talent" -> 1 row
+
+select d.id, d.name, count(e.id) as 'number of employees' from department d left join employee e on e.departmentId = d.id group by d.id, d.name;
+
+
+-- Query 2 - There are many employees with the first name “Jim” in the company. Find the department where the name “Jim” is most popular
+select r.name from (Select d.id, d.name, count(e.name) count from employee e inner join department d on d.id = e.departmentId where e.name = 'Jim' group by d.name) as r order by r.count desc limit 1; ;
+
+
+-- Query 3 - show all departments that paid more than $100,000 to their employees during last December
+select r.id, r.name from (Select d.id, d.name, sum(e.amount) sum from employee e inner join department d on d.id = e.departmentId 
+inner join payment p on e.id = p.employeeId where p.paidAt.between('1-12-2022','31-12-2022') group by d.name) as r where r.sum > 100000;
+
+
+The Table name is Employee with columns - id, name, salary. Delete duplicate names
+keeping 1st name not deleted.
+● How to find Nth highest salary from a table
+● There is a table which contains two columns Student and Marks, you need to find all the
+students, whose marks are greater than average marks i.e., list of above average
+students.
+● SQL to display the Department Name Having Highest Average Salary. The table name
+is Company and has id, name, department, and salary as columns.
+● SQL to Print the Name and Salary of the Person Having the Least Salary in each
+Department. The table name is Company and has id, name, department, and salary as
+columns.
+
+4. Delete duplicate rows   - https://www.mysqltutorial.org/mysql-delete-duplicate-rows/
+
+  a. A) Delete duplicate rows using DELETE JOIN statement
+MySQL provides you with the DELETE JOIN statement that allows you to remove duplicate rows quickly.
+
+The following statement deletes duplicate rows and keeps the highest id:
+
+DELETE t1 FROM contacts t1
+INNER JOIN contacts t2 
+WHERE 
+    t1.id < t2.id AND 
+    t1.email = t2.email;
+	
+b, DELETE FROM contacts 
+WHERE 
+	id IN (
+	SELECT 
+		id 
+	FROM (
+		SELECT 
+			id,
+			ROW_NUMBER() OVER (
+				PARTITION BY email
+				ORDER BY email) AS row_num
+		FROM 
+			contacts
+		
+	) t
+    WHERE row_num > 1
+);
+
+
+
+
+
+
+
+
+
+

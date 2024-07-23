@@ -1,0 +1,17 @@
+https://www.geeksforgeeks.org/difference-between-http-and-https/
+
+HTTP
+
+1.HTTP stands for HyperText Transfer Protocol.
+2. HTTP uses port number 80 for communication.
+3.Hyper-text exchanged using HTTP goes as plain text i.e. anyone between the browser and server can read it relatively easily if one intercepts this exchange of data and due to which it is Insecure.
+4. HTTP Works at the Application Layer.
+5. HTTP is used to transfer text, video, and images via web pages.
+
+HTTPS
+
+1. HTTPS stands for HyperText Transfer Protocol Secure.
+2. HTTP uses port number 443 for communication.
+3.HTTPS is considered to be secure but at the cost of processing time because Web Server and Web Browser need to exchange encryption keys using Certificates before actual data can be transferred.
+4. HTTPS works at Transport Layer.
+5. HTTPS uses Encryption which results in better security than HTTP.

@@ -1,0 +1,11 @@
+https://www.tutorialspoint.com/design_pattern/interpreter_pattern.htm
+
+
+
+In short, the pattern defines the grammar of a particular language in
+an object-oriented way which can be evaluated by the interpreter itself.
+
+
+An Interpreter Pattern says that "to define a representation of grammar of a given
+language, along with an interpreter that uses this representation
+to interpret sentences in the language".

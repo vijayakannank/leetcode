@@ -1,0 +1,61 @@
+https://home.csulb.edu/~pnguyen/cecs277/lecnotes/State%20Design%20Pattern%20in%20Java.pdf
+
+
+How State pattern works?
+1. Define an object that represent various states that object can be. Remember state
+machine.
+2. Define a context object, whose behavior varies as its state object changes.
+
+
+
+State pattern is one of the heavily used pattern in game development. The game
+character can be in different states such as healthy, surviving and dead. When
+character is healthy, it allows user to fires at enemies with different weapons.
+When surviving state its health gets critical, and when its health reaches to 0, the
+character is said to be in dead state where the game is over.
+Let us implement this use case without using State design pattern. It can be
+achieved by usin
+
+
+//  dif betveen state and behavior pattern
+
+
+Consider an IVR (Interactive Voice Response) system handling customer calls.
+ You may want to program it to handle customers on:
+
+Work days
+Holidays
+To handle this situation you can use a State Pattern.
+
+Holiday: IVR simply responds saying that 'Calls can be taken only on working days
+between 9am to 5pm'.
+Work days: it responds by connecting the customer to a customer care executive.
+This process of connecting a customer to a support executive can itself be
+implemented using a Strategy Pattern where the executives are picked based on either of:
+
+Round Robin
+Least Recently Used
+Other priority based algorithms
+The strategy pattern decides on 'how' to perform some action and
+ state pattern decides on 'when' to perform them.
+
+
+ State design pattern is used to define and manage state of an object,
+ while Strategy pattern is used to define a set of interchangeable algorithm
+ and lets client to choose one of them.
+
+
+ For State pattern lets consider an example of Medial Player Play button. When we do play it starts playing and makes the context aware that it is playing. Every time the client wants to perform play operation he checks the current state of the player. Now the client knows the state of the object is playing via the context object so he calls the pause state objects actions method. The part of the client realizing the state and on what state it needs to do action can be automated.
+
+ https://www.youtube.com/watch?v=e45RMc76884 https://www.tutorialspoint.com/design_pattern/state_pattern.htm
+
+ In the case of Strategy pattern, the arrangement of the class diagram is same as state pattern. The client comes to this arrangement to do some operation. That is instead of the different states there are different algorithms say for example different analysis that needs to be performed on the pattern. Here the clients tell the context what it wants to do that what algorithm (business defined custom algorithm) and then performs that.
+
+ https://www.tutorialspoint.com/design_pattern/strategy_pattern.htm
+
+ Both implements open close principle so the developer has the capability to add new states to the state pattern and new algorithm.
+
+ But the difference is what they are used that is state pattern used to execute different logic based on a state of the object. And in a case of strategy different logic.
+
+ Share
+

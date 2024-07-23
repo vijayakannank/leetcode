@@ -1,0 +1,56 @@
+https://www.tutorialspoint.com/design_pattern/flyweight_pattern.htm
+
+
+Flyweight pattern is primarily used to reduce the number of objects created
+and to decrease memory footprint and increase performance.
+This type of design pattern comes under structural pattern as this pattern
+provides ways to decrease object count thus improving the object structure of application.
+
+
+it's similar to prototype pattern but it has few diff
+
+In Flyweight, object is immutable.
+In Prototype, object is mutable.
+
+Flyweight is about saving memory by not creating new objects and reusing existing ones when possible.
+Prototype is about, reusing existing object in order to save cost of new object creation.
+
+Flyweight is used when creating multiple type of single object.
+Prototype is used when creating single type of single object.
+
+Flyweight objects are immutable. Once created, its state can't be changed. Due to this flyweight objects can be used by multiple clients without any issue whereas in an object pool an object can be used only by one client at a time.
+
+The prototype will create duplicate objects by cloning but its state needs not to be immutable. It's just creating another object on demand from a given template. i.e, we are creating an object here so it will come under creational pattern.
+
+In Flyweight you will not create a new object but an immutable object will be shared accross the clients.
+
+
+
+
+
+class ShapeFactory {
+    Map<String, Shape> map = new HashMap<>();
+
+    public Shape getShape(String type){
+        return map.computeIfAbsent(type, this::createShape);
+    }
+
+    private Shape createShape(String type){
+
+        System.out.println("create shape getting called for type - " + type);
+        Shape shape = null;
+
+        switch (type){
+            case "circle":
+                shape = new Circle();
+                break;
+            case "triangle":
+                shape = new Triangle();
+                break;
+            default:
+                shape = null;
+                break;
+        }
+        return shape;
+    }
+}
